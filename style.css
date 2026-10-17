@@ -478,22 +478,29 @@ body.project-view .gallery {
 
 .back-button {
     position: fixed;
-    bottom: 20px;
+    bottom: 8px;
     left: calc(55% + 24px);
     z-index: 1100;
     display: none;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 22px;
+    height: 20px;
     padding: 0;
-    border: 1px solid #000;
+    border: none;
     background: #fff;
     color: #000;
     font-family: var(--font-text);
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1;
     cursor: pointer;
+}
+
+/* area di tocco più grande dell'icona, senza cambiarne l'aspetto */
+.back-button::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
 }
 
 body.project-view .back-button {
