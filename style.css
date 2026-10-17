@@ -261,6 +261,7 @@ body.home-page .site-nav {
     min-height: 100dvh;
     padding: 100px 5% 40px;
     overflow: hidden;
+    isolation: isolate; /* il video (z-index -1) resta sopra lo sfondo bianco del body */
 }
 
 .videofullscreen {

@@ -20,13 +20,13 @@ Backup completo dello stato precedente: `~/Desktop/Amore_backup_prima_della_sist
 | 6 | ✅ risolto | `project.html` eliminata (orfana e non funzionante; resta nel backup) |
 | 7 | ✅ risolto | La trasformazione via JS non esiste più: la tabella è HTML statico; eliminate classi spaziatrici, `#hide`, `nth-child` e ID duplicati |
 | 8 | ✅ risolto | Pulsante ← (44×44 px) visibile a ogni larghezza (anche a 770 px); URL `work.html#TR01` con History (tasto Indietro/Avanti, link diretti); Esc chiude; dopo il resize nessuno stato bloccato (tutto via CSS) |
-| 9 | ✅ risolto | Video con `muted playsinline loop poster`: parte da solo. Il video About è ora `img/about.mp4` (H.264). **Nota:** resta il filmato di prova Big Buck Bunny, da sostituire con il contenuto reale |
+| 9 | ✅ risolto | Video con `muted playsinline loop poster`: parte da solo. Il video About è ora `img/about.mp4` (H.264). Il file si chiama ancora `big_buck_bunny…` nel backup, ma il contenuto è un video di Bianca (non un segnaposto); dopo la sistemazione il video era temporaneamente nascosto da un errore di stacking CSS, corretto con `isolation: isolate` |
 | 10 | ✅ risolto | Niente più validazione/`groupSizes`; il testo "w/ …" è nascosto via CSS sotto 1200 px e torna se si allarga la finestra |
 | 11 | ✅ risolto | Alt descrittivi, `<button>` al posto di `<a href="#">`, `:focus-visible`, un solo `<h1>` per pagina, About in paragrafi, testo 12 px, `aria-current`, `rel="noopener noreferrer"` |
 | 12 | ✅ risolto | HTML riscritto: niente `</br>`, `</i>`, `</a>` orfani, ID duplicati, head duplicati; Font Awesome (inutilizzato) rimosso |
 | 13 | ✅ risolto | `style.css` riscritto da zero (948 → ~480 righe): niente duplicati, valori invalidi (`100hv`, `font-style:none`…) o codice morto |
 | 14 | ✅ risolto | `100dvh` con fallback `100vh`; rimosso il listener di scroll inutile; `.div17` corretto; navbar della home con sfondo bianco |
-| 15 | ✅ in parte | Rimossi 3 file RAW `.cr2`, 15 immagini `imgg/im47-61` non usate, `.DS_Store` e il video di prova `.mov`. **Non fatto:** rinomina delle cartelle (`img`, `imgg`, `imggg`…) |
+| 15 | ✅ in parte | Rimossi 3 file RAW `.cr2`, 15 immagini `imgg/im47-61` non usate, `.DS_Store` e il `.mov` (convertito in `about.mp4`). **Non fatto:** rinomina delle cartelle (`img`, `imgg`, `imggg`…) |
 | 16 | ✅ risolto | Titoli e `meta description` per pagina, Open Graph, favicon. Email/CV/social lasciati invariati |
 | 17 | ✅ risolto | Ogni voce è una riga unica (codice + descrizione): niente disallineamenti; la colonna REFERENCE è nascosta sotto 1300 px come nell'intento originale (quindi anche su telefono) |
 | 18 | ✅ risolto | Home su telefono: griglia a 2 colonne senza sovrapposizioni (`scrollWidth` 390) |
@@ -34,7 +34,6 @@ Backup completo dello stato precedente: `~/Desktop/Amore_backup_prima_della_sist
 Da sapere / ancora aperto:
 - `script.js` è ora usato solo da `work.html`; le altre pagine non caricano script.
 - Il codice di riferimento (TR01…) non è più visibile sotto 1300 px, ma è nell'URL (`#TR01`).
-- Il video About è ancora il segnaposto Big Buck Bunny.
 - Non testati: Safari/iOS, Firefox, dispositivi reali.
 - Le foto sono compresse in modo irreversibile in questa cartella; gli originali sono solo nel backup.
 - Nella home le immagini sono 36 (nella versione precedente un conteggio riportava 35 per un artefatto del documento annidato).
@@ -57,7 +56,7 @@ Gravità: 🔴 critico (rompe funzionalità / impatto forte) · 🟠 alto · �
 | 6 | 🟠 | `project.html` è una pagina orfana e rotta ("Loading project..." infinito) | project.html |
 | 7 | 🟠 | Media query per `#hide` e `nth-child` colpiscono elementi che il JS elimina | style.css / script.js |
 | 8 | 🟠 ✅ | Su desktop e tra 767-780 px non si può tornare indietro dalla galleria; dopo un resize si resta bloccati; niente URL/history | script.js / style.css |
-| 9 | 🟠 ✅ | Video della landing bloccato dall'autoplay (senza `muted`); video About è un placeholder; 85 MB | index.html, about.html |
+| 9 | 🟠 ✅ | Video della landing bloccato dall'autoplay (senza `muted`); il nome del file del video About è fuorviante (`big_buck_bunny…`); 85 MB | index.html, about.html |
 | 10 | 🟡 ✅ | Contenuto Work dipendente da validazione rigida: se fallisce, la pagina resta vuota/disallineata | script.js |
 | 11 | 🟡 | Accessibilità carente | tutte |
 | 12 | 🟡 | HTML non valido / ripetizioni | tutte |
@@ -135,7 +134,7 @@ Gravità: 🔴 critico (rompe funzionalità / impatto forte) · 🟠 alto · �
 ### 9. Video
 - [index.html:16](index.html#L16): `<video autoplay>` senza `muted` e `playsinline` → ✅ in Chromium il video è caricato (`readyState 4`) ma resta **in pausa** (`paused: true`, `muted: false`): la landing mostra un fotogramma fermo finché non si clicca (e il click porta alla home). Su iOS Safari l'effetto è analogo. Nessun `poster`, nessun fallback.
 - `img/BIGA.mp4` pesa **85 MB** per una landing: tempi di caricamento molto alti.
-- ✅ In About il video parte (è `muted`) e il testo è leggibile a 1440 e 390 px, senza scroll orizzontale; ma [about.html:26](about.html#L26): `big_buck_bunny_720p_1mb.mov` — è il **video di prova** di Big Buck Bunny (placeholder), con `type="video/mp4"` ma contenitore QuickTime (`.mov`); compatibilità non garantita. Probabilmente non è il contenuto finale.
+- ✅ In About il video parte (è `muted`) e il testo è leggibile a 1440 e 390 px, senza scroll orizzontale; ma [about.html:26](about.html#L26): `big_buck_bunny_720p_1mb.mov` — il nome richiama il video di prova di Big Buck Bunny, ma il contenuto è un video reale; il file ha `type="video/mp4"` ma contenitore QuickTime (`.mov`); compatibilità non garantita. 
 - [about.html](about.html): il filtro/`blur(5px)` + `brightness(1.3)` sul video a schermo intero ([style.css:168](style.css#L168)) è costoso per la GPU su mobile.
 - `playVideo()`, `#playButton`, `.custom-controls` ([script.js:10-16](script.js#L10-L16), [style.css:190-207](style.css#L190-L207)): non esiste alcun elemento corrispondente nelle pagine → codice morto. Lo stesso per `redirectToHome` ([script.js:6](script.js#L6)): è usato solo da `index.html` ma lo script è caricato anche in tutte le altre pagine.
 
@@ -220,7 +219,7 @@ Gravità: 🔴 critico (rompe funzionalità / impatto forte) · 🟠 alto · �
 - `.DS_Store` (macOS) in root, `img/`, `imgg/`: da rimuovere e aggiungere a `.gitignore`.
 - `DSCF5232.jpg` in root, mentre gli altri asset sono in cartelle.
 - Mancano: `.gitignore`, `README`, `favicon`, `robots.txt`, `404.html`. Il progetto non è un repository git (non c'è controllo versione) né ha pipeline di build/minificazione.
-- `img/big_buck_bunny_720p_1mb.mov` è un file di esempio (vedi punto 9).
+- `img/big_buck_bunny_720p_1mb.mov`: nome fuorviante per un video reale (vedi punto 9); ora convertito in `img/about.mp4`.
 - Nessun test né linting (HTML/CSS/JS).
 
 ### 16. Varie
