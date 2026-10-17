@@ -1,0 +1,549 @@
+/* ==========================================
+   BASE
+   ========================================== */
+
+:root {
+    --font-ui: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --font-text: Arial, Helvetica, sans-serif;
+    --nav-height: 120px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-text);
+    font-weight: lighter;
+    color: #000;
+    background: #fff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #000;
+}
+
+:focus-visible {
+    outline: 1px solid #000;
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 2%;
+    font-family: var(--font-ui);
+}
+
+.brand {
+    flex-grow: 1;
+    padding-left: 10%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13pt;
+    letter-spacing: 5px;
+}
+
+.brand-short {
+    display: none;
+}
+
+.site-nav ul {
+    display: flex;
+}
+
+.site-nav li {
+    margin-right: 50px;
+}
+
+.site-nav li a {
+    text-decoration: none;
+}
+
+.site-nav a[aria-current="page"] {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 780px) {
+    .brand {
+        padding-left: 1%;
+        text-align: left;
+    }
+
+    .brand-full {
+        display: none;
+    }
+
+    .brand-short {
+        display: inline;
+    }
+
+    .site-nav li {
+        margin-right: 40px;
+    }
+}
+
+
+/* ==========================================
+   INDEX — LANDING
+   ========================================== */
+
+.landing-page {
+    position: relative;
+    display: block;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.landing-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(60%);
+}
+
+.index-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-ui);
+    font-size: 16pt;
+    font-weight: lighter;
+    letter-spacing: 5px;
+    white-space: nowrap;
+    color: #fff;
+    mix-blend-mode: difference;
+}
+
+@media screen and (max-width: 480px) {
+    .index-title {
+        font-size: 12pt;
+        letter-spacing: 3px;
+    }
+}
+
+
+/* ==========================================
+   HOME — GRIGLIA IMMAGINI
+   ========================================== */
+
+body.home-page .site-nav {
+    background: #fff;
+    padding-bottom: 12px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(38, 1fr);
+    margin-top: 20%;
+}
+
+.image {
+    position: relative;
+    overflow: hidden;
+}
+
+.image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (min-width: 781px) {
+    .div1  { grid-area: 1 / 2 / 2 / 3; }
+    .div2  { grid-area: 2 / 4 / 3 / 5; }
+    .div3  { grid-area: 2 / 5 / 3 / 6; }
+    .div4  { grid-area: 3 / 2 / 4 / 3; }
+    .div5  { grid-area: 4 / 3 / 5 / 4; }
+    .div6  { grid-area: 5 / 5 / 6 / 6; }
+    .div7  { grid-area: 6 / 4 / 7 / 5; }
+    .div8  { grid-area: 7 / 2 / 8 / 4; }
+    .div9  { grid-area: 9 / 3 / 10 / 4; }
+    .div10 { grid-area: 10 / 4 / 11 / 5; }
+    .div11 { grid-area: 11 / 5 / 12 / 6; }
+    .div12 { grid-area: 12 / 3 / 13 / 5; }
+    .div13 { grid-area: 13 / 2 / 14 / 3; }
+    .div14 { grid-area: 14 / 5 / 15 / 6; }
+    .div15 { grid-area: 16 / 3 / 18 / 5; }
+    .div16 { grid-area: 16 / 5 / 17 / 6; }
+    .div17 { grid-area: 15 / 4 / 16 / 5; }
+    .div18 { grid-area: 18 / 2 / 19 / 3; }
+    .div19 { grid-area: 19 / 5 / 20 / 6; }
+    .div20 { grid-area: 20 / 4 / 21 / 5; }
+    .div21 { grid-area: 21 / 4 / 22 / 6; }
+    .div22 { grid-area: 22 / 4 / 23 / 5; }
+    .div23 { grid-area: 23 / 2 / 25 / 4; }
+    .div24 { grid-area: 25 / 2 / 26 / 3; }
+    .div25 { grid-area: 26 / 5 / 27 / 6; }
+    .div26 { grid-area: 27 / 4 / 28 / 5; }
+    .div27 { grid-area: 28 / 2 / 29 / 3; }
+    .div28 { grid-area: 29 / 5 / 30 / 6; }
+    .div29 { grid-area: 30 / 4 / 31 / 5; }
+    .div30 { grid-area: 31 / 3 / 32 / 4; }
+    .div31 { grid-area: 32 / 3 / 33 / 4; }
+    .div32 { grid-area: 33 / 4 / 35 / 6; }
+    .div33 { grid-area: 35 / 4 / 36 / 5; }
+    .div34 { grid-area: 36 / 2 / 37 / 3; }
+    .div35 { grid-area: 37 / 2 / 38 / 3; }
+    .div36 { grid-area: 38 / 4 / 39 / 5; }
+}
+
+/* Telefono: due colonne semplici, nessuna sovrapposizione */
+@media screen and (max-width: 780px) {
+    .parent {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+        gap: 8px;
+        margin-top: 70px;
+        padding: 0 8px 8px;
+    }
+
+    .image img {
+        height: auto;
+        aspect-ratio: 3 / 4;
+    }
+}
+
+
+/* ==========================================
+   ABOUT
+   ========================================== */
+
+.contenitore {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 100px 5% 40px;
+    overflow: hidden;
+}
+
+.videofullscreen {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.3) saturate(60%) blur(5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .videofullscreen {
+        display: none;
+    }
+}
+
+.text-box {
+    max-width: 760px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.text-box p {
+    margin: 0 0 1em;
+}
+
+.social {
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+.social a {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 780px) {
+    .contenitore {
+        padding: 70px 5% 24px;
+    }
+
+    .text-box {
+        font-size: 12px;
+    }
+}
+
+
+/* ==========================================
+   WORK — LAYOUT PRINCIPALE
+   ========================================== */
+
+body.work-page {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body.work-page .container {
+    display: flex;
+    align-items: stretch;
+    height: calc(100vh - var(--nav-height));
+    height: calc(100dvh - var(--nav-height));
+    margin-top: var(--nav-height);
+    overflow: hidden;
+}
+
+.left-box,
+.right-box {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.left-box::-webkit-scrollbar,
+.right-box::-webkit-scrollbar {
+    display: none;
+}
+
+.left-box {
+    flex: 0 0 55%;
+    padding-left: 1%;
+}
+
+.right-box {
+    flex: 0 0 45%;
+    padding-right: 1%;
+}
+
+/* Tabella progetti: una riga per progetto, voci allineate per riga */
+
+.work-grid {
+    display: grid;
+    grid-template-columns: 10% 20% 30% 40%;
+    align-items: start;
+}
+
+.work-headings {
+    margin-bottom: 8px;
+}
+
+.work-headings h2 {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: lighter;
+}
+
+.work-project {
+    margin-bottom: 14px;
+    font-size: 12px;
+}
+
+.work-col {
+    padding-right: 5px;
+    overflow-wrap: anywhere;
+}
+
+.work-items,
+.work-items-head {
+    display: grid;
+    min-width: 0;
+}
+
+.work-items-head {
+    grid-template-columns: 3fr 5fr;
+}
+
+.work-items {
+    grid-template-columns: 1fr;
+}
+
+.work-row,
+.work-link {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.work-row {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    padding-right: 5px;
+}
+
+.work-row:hover,
+.work-link:hover,
+.work-row.is-active,
+.work-link.is-active {
+    text-decoration: underline;
+}
+
+/* Colonna REFERENCE e dettaglio collaborazioni: solo su schermi larghi */
+@media screen and (max-width: 1300px) {
+    .col-ref {
+        display: none;
+    }
+
+    .work-row,
+    .work-items-head {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .collab {
+        display: none;
+    }
+}
+
+/* Colonna destra */
+
+.cover {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: top left;
+}
+
+.gallery {
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px 24px 24px;
+}
+
+.gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #f4f4f4;
+}
+
+body.project-view .cover {
+    display: none;
+}
+
+body.project-view .gallery {
+    display: flex;
+}
+
+/* Pulsante di ritorno (visibile solo dentro una galleria) */
+
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: calc(55% + 24px);
+    z-index: 1100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
+    font-family: var(--font-text);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+body.project-view .back-button {
+    display: flex;
+}
+
+/* Tablet e telefono: elenco OPPURE galleria a tutta larghezza */
+
+@media screen and (max-width: 780px) {
+    :root {
+        --nav-height: 80px;
+    }
+
+    body.work-page .container {
+        display: block;
+    }
+
+    .left-box {
+        width: 100%;
+        padding: 0 2%;
+    }
+
+    .work-grid {
+        grid-template-columns: 12% 24% 28% 36%;
+    }
+
+    .work-project {
+        font-size: 11px;
+    }
+
+    .right-box {
+        display: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    body.project-view .left-box {
+        display: none;
+    }
+
+    body.project-view .right-box {
+        display: block;
+    }
+
+    .gallery {
+        gap: 20px;
+        padding: 16px 16px 80px;
+    }
+
+    .back-button {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
